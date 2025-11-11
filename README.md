@@ -71,7 +71,7 @@ typedef struct {
     unsigned int fp_offset;    // Offset into floating-point reg save area
     void *overflow_arg_area;   // Pointer to stack arguments
     void *reg_save_area;       // Pointer to saved registers
-} va_list;
+} va_list[1];
 ```
 
 ### What Each Member Does
