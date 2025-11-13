@@ -1,37 +1,45 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_print_char.c                                    :+:      :+:    :+:   */
+/*   ft_print_percent.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: achahi <achahi@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/10/28 21:21:52 by achahi            #+#    #+#             */
-/*   Updated: 2025/11/12 12:42:46 by achahi           ###   ########.fr       */
+/*   Created: 2025/11/12 11:01:56 by achahi            #+#    #+#             */
+/*   Updated: 2025/11/12 11:02:51 by achahi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libftprintf.h"
 
-int	ft_print_char(char c, t_format *specs)
+static int	ft_putspace(int n, char c)
+{
+	int	i;
+
+	i = 0;
+	while (i < n)
+	{
+		write(1, &c, 1);
+		i++;
+	}
+	if (n > 0)
+		return (n);
+	return (0);
+}
+
+int	ft_print_percent(t_format *specs)
 {
 	int	printed;
-	int	padding;
+	int	pad;
 
 	printed = 0;
-	padding = 0;
-	if (specs->width > 1)
-		padding = specs->width - 1;
+	pad = specs->width - 1;
+	if (!specs->flag_minus && !specs->flag_zero)
+		printed += ft_putspace(pad, ' ');
+	if (!specs->flag_minus && specs->flag_zero)
+		printed += ft_putspace(pad, '0');
+	printed += write(1, "%", 1);
 	if (specs->flag_minus)
-	{
-		printed += ft_putchar(c);
-		while (padding-- > 0)
-			printed += ft_putchar(' ');
-	}
-	else
-	{
-		while (padding-- > 0)
-			printed += ft_putchar(' ');
-		printed += ft_putchar(c);
-	}
+		printed += ft_putspace(pad, ' ');
 	return (printed);
 }

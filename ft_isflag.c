@@ -1,37 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_print_char.c                                    :+:      :+:    :+:   */
+/*   ft_isflag.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: achahi <achahi@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/10/28 21:21:52 by achahi            #+#    #+#             */
-/*   Updated: 2025/11/12 12:42:46 by achahi           ###   ########.fr       */
+/*   Created: 2025/11/12 12:55:03 by achahi            #+#    #+#             */
+/*   Updated: 2025/11/12 13:16:41 by achahi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libftprintf.h"
 
-int	ft_print_char(char c, t_format *specs)
+int	ft_isflag(char c)
 {
-	int	printed;
-	int	padding;
-
-	printed = 0;
-	padding = 0;
-	if (specs->width > 1)
-		padding = specs->width - 1;
-	if (specs->flag_minus)
-	{
-		printed += ft_putchar(c);
-		while (padding-- > 0)
-			printed += ft_putchar(' ');
-	}
-	else
-	{
-		while (padding-- > 0)
-			printed += ft_putchar(' ');
-		printed += ft_putchar(c);
-	}
-	return (printed);
+	return (c == '-' || c == '+' || c == ' ' || c == '#' || c == '0');
 }

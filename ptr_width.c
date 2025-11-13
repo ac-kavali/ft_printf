@@ -1,37 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_print_char.c                                    :+:      :+:    :+:   */
+/*   ptr_width.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: achahi <achahi@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/10/28 21:21:52 by achahi            #+#    #+#             */
-/*   Updated: 2025/11/12 12:42:46 by achahi           ###   ########.fr       */
+/*   Created: 2025/11/12 09:22:33 by achahi            #+#    #+#             */
+/*   Updated: 2025/11/12 09:31:52 by achahi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libftprintf.h"
 
-int	ft_print_char(char c, t_format *specs)
+int	ptr_width(char *s, t_format *specs, int len)
 {
+	int	i;
 	int	printed;
-	int	padding;
 
+	i = 0;
 	printed = 0;
-	padding = 0;
-	if (specs->width > 1)
-		padding = specs->width - 1;
-	if (specs->flag_minus)
-	{
-		printed += ft_putchar(c);
-		while (padding-- > 0)
-			printed += ft_putchar(' ');
-	}
-	else
-	{
-		while (padding-- > 0)
-			printed += ft_putchar(' ');
-		printed += ft_putchar(c);
-	}
+	while (i++ < (specs->width - len))
+		printed += write(1, " ", 1);
+	printed += write(1, s, len);
 	return (printed);
 }
