@@ -6,7 +6,7 @@
 /*   By: achahi <achahi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/28 22:04:54 by achahi            #+#    #+#             */
-/*   Updated: 2025/11/13 21:06:03 by achahi           ###   ########.fr       */
+/*   Updated: 2025/11/13 21:36:20 by achahi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ static int	ft_numlen(long n)
 	return (len);
 }
 
-static int	ft_putspace(int n, char c) /*Prints n copies of a character c to standard output.*/
+static int	ft_putspace(int n, char c)
 {
 	int	i;
 
